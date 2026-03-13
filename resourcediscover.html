@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resource Discovery | EduResource</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header / TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 md:px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">auto_stories</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">EduResource</h2>
+</div>
+<div class="hidden md:flex items-center gap-4">
+<label class="flex flex-col min-w-[320px] h-10">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus-within:ring-2 focus-within:ring-primary/50 transition-all">
+<div class="text-slate-500 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 h-full placeholder:text-slate-500 px-4 text-sm font-normal" placeholder="Search for courses, notes, or professors..." value=""/>
+</div>
+</label>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">bookmarks</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-slate-200 dark:border-slate-700"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-slate-900 dark:text-white">Alex Rivera</p>
+<p class="text-xs text-slate-500">Premium Member</p>
+</div>
+<div class="bg-primary/20 bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-transparent group-hover:ring-primary transition-all overflow-hidden" data-alt="User profile picture of a young man smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDXE9_ZTf_LeQFliGBZAOZ71JkFbY1qYNCBTCSQiZ7DRBr1XIt4qo8p8LslR53GneamkS_7jeBsQCTSAPlcJWXs8ua_ygVh8KAPJ6gSmx1R4vjWOqxZJmtZT93ilEUysEWCDZBjKvz9VxgjB5XHOZTtiCKjR_k2yFT1hbaJwgE-sM6XB2NqZ5Hw4Qbp_N4V7AzK8kVpkuNEjURA4rCG2dtgD1HiFnDSO6sSchoL_MWHwgztN72IKB9oRSzKdBrJ7lxZtUe8_3pGeYI");'>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex">
+<!-- Sidebar Filters -->
+<aside class="w-72 hidden lg:flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 gap-8 overflow-y-auto h-[calc(100vh-64px)] sticky top-16">
+<div>
+<h3 class="text-slate-900 dark:text-white font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">filter_list</span>
+                        Filters
+                    </h3>
+<!-- Search inside filters -->
+<div class="mb-6">
+<label class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 block">Quick Filter</label>
+<input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm px-3 py-2 focus:ring-primary focus:border-primary" placeholder="Type to filter..." type="text"/>
+</div>
+<div class="space-y-6">
+<!-- Professor Filter -->
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold text-slate-900 dark:text-white">Professor</p>
+<div class="space-y-2">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary bg-slate-50 dark:bg-slate-800 border-slate-300 dark:border-slate-600" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Dr. Sarah Jenkins</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary bg-slate-50 dark:bg-slate-800 border-slate-300 dark:border-slate-600" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Prof. Michael Chen</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary bg-slate-50 dark:bg-slate-800 border-slate-300 dark:border-slate-600" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Dr. Elena Rodriguez</span>
+</label>
+</div>
+</div>
+<!-- Semester Filter -->
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold text-slate-900 dark:text-white">Semester</p>
+<div class="grid grid-cols-2 gap-2">
+<button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-primary text-white">Fall 2023</button>
+<button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Spring 2023</button>
+<button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Summer 2023</button>
+<button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Fall 2022</button>
+</div>
+</div>
+<!-- Resource Type Filter -->
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold text-slate-900 dark:text-white">Resource Type</p>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-2 rounded-lg bg-primary/10 border border-primary/20 cursor-pointer">
+<span class="material-symbols-outlined text-primary text-lg">description</span>
+<span class="text-sm font-medium text-primary">Lecture Notes</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">quiz</span>
+<span class="text-sm font-medium">Exam Papers</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">menu_book</span>
+<span class="text-sm font-medium">Study Guides</span>
+</label>
+</div>
+</div>
+<!-- Course Filter -->
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold text-slate-900 dark:text-white">Course</p>
+<select class="form-select w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm px-3 py-2">
+<option>CS101: Intro to CS</option>
+<option>CS202: Algorithms</option>
+<option>MAT301: Calculus III</option>
+<option>PHY105: Classical Physics</option>
+</select>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-800">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined">upload</span>
+                        Upload Resource
+                    </button>
+</div>
+</aside>
+<!-- Content Area -->
+<div class="flex-1 min-w-0 bg-background-light dark:bg-background-dark p-6 lg:p-10">
+<!-- Breadcrumbs & Title -->
+<div class="flex flex-col gap-4 mb-8">
+<nav class="flex items-center gap-2 text-sm text-slate-500 font-medium">
+<a class="hover:text-primary transition-colors" href="dashboard.html">Home</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 dark:text-slate-300">Resource Discovery</span>
+</nav>
+<div class="flex flex-wrap justify-between items-end gap-6">
+<div class="max-w-2xl">
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-extrabold leading-tight tracking-tight mb-2">Find Study Materials</h1>
+<p class="text-slate-600 dark:text-slate-400 text-base">Browse high-quality academic resources verified by your university network.</p>
+</div>
+<div class="flex items-center gap-2 bg-white dark:bg-slate-900 p-1 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
+<button class="p-2 rounded bg-primary/10 text-primary">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="p-2 rounded text-slate-400 hover:text-slate-600">
+<span class="material-symbols-outlined">view_list</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Active Tags -->
+<div class="flex flex-wrap gap-2 mb-8">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300">
+                        Computer Science
+                        <button class="flex items-center justify-center text-slate-400 hover:text-red-500"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300">
+                        Lecture Notes
+                        <button class="flex items-center justify-center text-slate-400 hover:text-red-500"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300">
+                        Verified
+                        <button class="flex items-center justify-center text-slate-400 hover:text-red-500"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+<button class="text-primary text-xs font-bold hover:underline px-2">Clear all</button>
+</div>
+<!-- Results Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Result Card 1 -->
+<div class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col">
+<div class="relative h-48 bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+<div class="z-10 bg-white dark:bg-slate-900 p-4 shadow-2xl rounded-lg transform group-hover:scale-105 transition-transform duration-300 border border-slate-100 dark:border-slate-800 w-32 aspect-[3/4] flex flex-col gap-2">
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded"></div>
+<div class="h-2 w-3/4 bg-slate-200 dark:bg-slate-700 rounded"></div>
+<div class="mt-4 flex flex-col gap-1">
+<div class="h-1 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-1 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-1 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-1 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+</div>
+</div>
+<div class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">PDF</div>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 p-1.5 rounded-lg text-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-lg">verified</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-2">Neural Networks and Deep Learning: Comprehensive Study Guide</h3>
+</div>
+<p class="text-sm text-slate-500 mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">school</span>
+                                CS402: Advanced Machine Learning
+                            </p>
+<div class="flex items-center gap-3 mb-5">
+<div class="size-8 rounded-full bg-slate-200 bg-cover bg-center" data-alt="Student profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCO8_2UHmeP280vVJqPgG2K8pMKUCExxvgh2aFFCTJ1RW0lc2d9Z6rU4KVhZ8DmNYBBaoYrNmeSQJPXp1iigCjS0YTu9Po5SyBJ4biDpMiAgS5cYKS7xaow5QyA708pcHW1sAp4lYksHh8ajCk5OlvCKdWAUdhlsDUzS4a0AGozznYQloibtTog0Tf6_PpgzE1U1LkoNXwHim-4JSp0W8ESZZ47cI_g74plPvjXspoJ6RAIIC12_ASZlBPO9PV-Ys4QvLm0d6j4EsE')"></div>
+<div class="text-xs">
+<p class="font-bold text-slate-800 dark:text-slate-200">Sarah Jenkins</p>
+<p class="text-slate-500">2 days ago • 1.2k views</p>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-4 text-slate-500">
+<div class="flex items-center gap-1 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">thumb_up</span>
+                                        428
+                                    </div>
+<div class="flex items-center gap-1 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">download</span>
+                                        156
+                                    </div>
+</div>
+<button class="bg-primary/10 text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">Preview</button>
+</div>
+</div>
+</div>
+<!-- Result Card 2 -->
+<div class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col">
+<div class="relative h-48 bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent"></div>
+<div class="z-10 bg-white dark:bg-slate-900 p-4 shadow-2xl rounded-lg transform group-hover:scale-105 transition-transform duration-300 border border-slate-100 dark:border-slate-800 w-32 aspect-[3/4] flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-emerald-500 mb-2">article</span>
+<div class="h-1.5 w-12 bg-slate-200 dark:bg-slate-700 rounded"></div>
+</div>
+<div class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">DOCX</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-2">Midterm Solutions: Discrete Mathematics Fall 2023</h3>
+</div>
+<p class="text-sm text-slate-500 mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">school</span>
+                                MAT201: Discrete Math
+                            </p>
+<div class="flex items-center gap-3 mb-5">
+<div class="size-8 rounded-full bg-slate-200 bg-cover bg-center" data-alt="Student profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCkqqcjMnyEukg5kvpvShE1iH-TZE8apgHexSaTrp_HQDS_E47PNhBT7iFNbjJNamu6GVS_sOLwf2turZF38RiF2Li6B5MTmaLTQPTx3Vh4Jwr3WZxibyEdmwPgqwK_JJDNxywTnU3KtADjgg85uKehl2tZdyNTkls_RvvIE8A8iVGKbgdwKgBkcr-ok-NcfO6LnLftAD352aQxbdQ12Qq85b2gH7uKiedIbOmjvRTNPFGNgbRPP0tzl2nDzYz6NGoYTD_PC2rKsuY')"></div>
+<div class="text-xs">
+<p class="font-bold text-slate-800 dark:text-slate-200">David Miller</p>
+<p class="text-slate-500">1 week ago • 842 views</p>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-4 text-slate-500">
+<div class="flex items-center gap-1 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">thumb_up</span>
+                                        152
+                                    </div>
+<div class="flex items-center gap-1 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">download</span>
+                                        310
+                                    </div>
+</div>
+<button class="bg-primary/10 text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">Preview</button>
+</div>
+</div>
+</div>
+<!-- Result Card 3 -->
+<div class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col">
+<div class="relative h-48 bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent"></div>
+<div class="z-10 bg-white dark:bg-slate-900 p-4 shadow-2xl rounded-lg transform group-hover:scale-105 transition-transform duration-300 border border-slate-100 dark:border-slate-800 w-32 aspect-[3/4] flex flex-col gap-2">
+<div class="h-10 w-full bg-orange-100 dark:bg-orange-900/30 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-500 text-lg">pie_chart</span>
+</div>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded"></div>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded"></div>
+</div>
+<div class="absolute top-3 left-3 bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">PPTX</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-2">Macroeconomics: Week 1-6 Lecture Slide Summary</h3>
+</div>
+<p class="text-sm text-slate-500 mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">school</span>
+                                ECO102: Macroeconomics
+                            </p>
+<div class="flex items-center gap-3 mb-5">
+<div class="size-8 rounded-full bg-slate-200 bg-cover bg-center" data-alt="Student profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9maWt_9g6UiBjPr7KGAdT9W1kuHta0TmLG2N4j7ut635fTzwG2qcBu8Ew_iTTCOYqRUgFQ0WvuafxY9M6q9WXKN88REGewH9FkeCPFvKboji_G_j5Es_fRMbCWjEr9nzPtg7EqJ_Pm6bon-8aHcjgYIl5wp-hS1BiKD-73mz48oLvF33D34kubMIOGJvFwl8ai8wjV1I_Vl6ZgCzsfZf-uSPVPJoa1Qy1G2lZlMefYyp51RB0WvbccNDAd2rdwPYB0BSpGtLEwps')"></div>
+<div class="text-xs">
+<p class="font-bold text-slate-800 dark:text-slate-200">Elena Petrov</p>
+<p class="text-slate-500">3 days ago • 567 views</p>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-4 text-slate-500">
+<div class="flex items-center gap-1 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">thumb_up</span>
+                                        89
+                                    </div>
+<div class="flex items-center gap-1 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">download</span>
+                                        45
+                                    </div>
+</div>
+<button class="bg-primary/10 text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">Preview</button>
+</div>
+</div>
+</div>
+<!-- Result Card 4 -->
+<div class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col">
+<div class="relative h-48 bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
+<div class="z-10 bg-white dark:bg-slate-900 p-4 shadow-2xl rounded-lg transform group-hover:scale-105 transition-transform duration-300 border border-slate-100 dark:border-slate-800 w-32 aspect-[3/4] flex flex-col gap-2">
+<div class="h-4 w-full bg-blue-500/20 rounded"></div>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded"></div>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded"></div>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded"></div>
+</div>
+<div class="absolute top-3 left-3 bg-blue-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">PDF</div>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 p-1.5 rounded-lg text-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-lg">verified</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-2">Organic Chemistry II: Functional Group Reactions Cheat Sheet</h3>
+</div>
+<p class="text-sm text-slate-500 mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">school</span>
+                                CHM305: Organic Chemistry II
+                            </p>
+<div class="flex items-center gap-3 mb-5">
+<div class="size-8 rounded-full bg-slate-200 bg-cover bg-center" data-alt="Student profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCth3e5HZwgsMh0H-LW7Mn-jM1mR6GF-8caGAcgf7cLTpazZrP2NnXq9BkzJsD9O-1nky1O6Ct0Fk1rUAGi4YKtiIJL1sF8pcUFyNqEvJjh1sGC8-ePSdOnMsqHkCmA8dJ_JjX2YNF3WfmDsOhnzWaOXNw2XaryAXzl-AEvCl1uVZmV8l_haujmbYFD-T0I5C30iq7IpGRZjM6p_7UPzTS4UWwUdzbEIZUhIfGtY789y-JdXj2C6XHBfBWQjPAr1bUdVencSzRm6aY')"></div>
+<div class="text-xs">
+<p class="font-bold text-slate-800 dark:text-slate-200">James Wilson</p>
+<p class="text-slate-500">Yesterday • 2.1k views</p>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-4 text-slate-500">
+<div class="flex items-center gap-1 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">thumb_up</span>
+                                        1.1k
+                                    </div>
+<div class="flex items-center gap-1 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">download</span>
+                                        890
+                                    </div>
+</div>
+<button class="bg-primary/10 text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">Preview</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="col-span-1 md:col-span-2 xl:col-span-3 flex justify-center mt-10">
+<nav class="flex items-center gap-2">
+<button class="size-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-primary hover:border-primary transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold">1</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary hover:border-primary transition-all">2</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary hover:border-primary transition-all">3</button>
+<span class="text-slate-400 px-2">...</span>
+<button class="size-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary hover:border-primary transition-all">12</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-primary hover:border-primary transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

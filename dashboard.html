@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduResource - Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 hidden md:flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary p-1.5 rounded-lg text-white">
+<span class="material-symbols-outlined block">school</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-primary">EduResource</h2>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium" href="dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="courseresource.html">
+<span class="material-symbols-outlined">book</span>
+<span>My Courses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="resourcediscover.html">
+<span class="material-symbols-outlined">library_books</span>
+<span>Library</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="upload.html">
+<span class="material-symbols-outlined">cloud_upload</span>
+<span>Uploads</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span>Saved Materials</span>
+</a>
+</nav>
+<div class="p-4 mt-auto border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a id="sign-out-btn" href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 dark:hover:bg-red-900/50 transition-colors">
+    <span class="material-symbols-outlined">logout</span>
+    <span>Sign Out</span>
+</a>
+<a href="profile.html" class="flex items-center gap-3 p-4 mt-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+    <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-500 font-bold overflow-hidden">
+        <img class="w-full h-full object-cover" data-alt="Profile picture of student user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5NHVu8HNKrT2vzVjoLJ0H12AIyhFal6CCaHu-uPbn4-JAAqYbks0OAoj-HzpID9l40XFTcTmT5YnaWhBXW7KLbvdbpr0ZJoGL5Cf_ReH06JGZqOCQvu7Lw-l02OcxCMMjtFp5SUIDIPQY5jWDMUm3E6EDZC7dVgD_kzpjXCL3kTacxUK9Ly4UIWOnazS2DCBR5MybT90Ej6BJD3bcsZojCPQH06R3ly5veUvA9S_GJ5C8fwVLgeIREDYrUiigH6GlP_Vy_Df8uaA"/>
+    </div>
+    <div class="flex flex-col">
+        <span class="text-sm font-semibold">Alex Johnson</span>
+        <span class="text-xs text-slate-500">Premium Member</span>
+    </div>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 py-4 flex items-center justify-between">
+<div class="flex-1 max-w-xl">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-xl py-2.5 pl-10 pr-4 focus:ring-2 focus:ring-primary text-slate-900 dark:text-slate-100 placeholder-slate-500 transition-all" placeholder="Search for courses, notes, textbooks..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-6">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<a class="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-colors" href="upload.html">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Upload Resource</span>
+</a>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-6 lg:p-10 space-y-10">
+<!-- Welcome Header -->
+<section>
+<h1 class="text-3xl font-bold tracking-tight">Welcome back!</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-2">You have 3 exams coming up this month. Stay focused!</p>
+</section>
+<!-- My Courses Section -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+                        My Courses
+                    </h2>
+<a class="text-primary text-sm font-semibold hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Course Card 1 -->
+<div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">biotech</span>
+</div>
+<span class="text-xs font-bold text-slate-400">80% COMPLETE</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Advanced Organic Chemistry</h3>
+<p class="text-sm text-slate-500 mb-6 italic">Prof. Sarah Henderson</p>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+<div class="bg-blue-500 h-full w-[80%] rounded-full"></div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center text-amber-600 dark:text-amber-400">
+<span class="material-symbols-outlined">calculate</span>
+</div>
+<span class="text-xs font-bold text-slate-400">45% COMPLETE</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Differential Equations</h3>
+<p class="text-sm text-slate-500 mb-6 italic">Dr. Marcus Vane</p>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full w-[45%] rounded-full"></div>
+</div>
+</div>
+<!-- Course Card 3 -->
+<div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined">code</span>
+</div>
+<span class="text-xs font-bold text-slate-400">12% COMPLETE</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Data Structures &amp; Algos</h3>
+<p class="text-sm text-slate-500 mb-6 italic">Dr. Elena Rodriguez</p>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full w-[12%] rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
+<!-- Recent Uploads -->
+<section class="xl:col-span-2">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                            Recent Uploads
+                        </h2>
+<a class="text-primary text-sm font-semibold hover:underline" href="#">View All</a>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Resource Name</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Course</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Date</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+<span class="font-medium">Midterm Study Guide.pdf</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Organic Chemistry</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Oct 12, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:bg-primary/10 p-1 rounded">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-500">description</span>
+<span class="font-medium">Lecture Notes - Week 5.docx</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Data Structures</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Oct 10, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:bg-primary/10 p-1 rounded">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-500">table_chart</span>
+<span class="font-medium">Lab Results Sheet.xlsx</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Applied Physics II</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Oct 08, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:bg-primary/10 p-1 rounded">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-orange-500">slideshow</span>
+<span class="font-medium">Evolutionary Bio Slides.pptx</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Biology 101</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Oct 05, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:bg-primary/10 p-1 rounded">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Trending Materials -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500">trending_up</span>
+                            Trending
+                        </h2>
+</div>
+<div class="space-y-4">
+<!-- Trending Card 1 -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex gap-4 hover:border-primary/40 transition-all cursor-pointer group">
+<div class="relative w-20 h-24 flex-shrink-0 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" data-alt="Cover of an Economics textbook" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8hxTv1SbF27OH2Mja9ni8Zx-68o2Gc5FK3JOjDrKDWacaCsE-VbJKXMlqZATmIbG5Tl0ZKpRJ5IMD4RnMIDV5UaGqx6pR3054qcCE3O5Z5noyFDNPP9_zP0oPMSXTF_sJl5UoCb7yYns9Yv_H4xAqDatdTai0I0yteo-BOK3yj6JY4ZbMjBHxlmVYLQIRKBl9tDJroolYZGoE4GLpyFWkr-StyVWJsITHTd3WKfVxuwE34OmziIKHKtqnmVGFfk0ekI2Sk_x67Y4"/>
+<div class="absolute top-1 left-1 bg-primary text-[10px] text-white px-1.5 py-0.5 rounded font-bold">TOP</div>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="font-bold text-sm line-clamp-2">Macroeconomics: Global Perspective 2024</h4>
+<p class="text-xs text-slate-500 mt-1">1.2k Downloads</p>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-amber-400 text-[16px] fill-current">star</span>
+<span class="text-xs font-bold italic">4.9/5.0</span>
+</div>
+</div>
+</div>
+<!-- Trending Card 2 -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex gap-4 hover:border-primary/40 transition-all cursor-pointer group">
+<div class="relative w-20 h-24 flex-shrink-0 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" data-alt="Cover of a Psychology textbook" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2GaI8CBQOLB-ORjfkEdy960-QF3c1n-DFodM4mCYIOPgZ9JBfelyDPBXdvusk5GTE5G0uL3GoaktnpLPNmEXnmq4vPWbFsj9SHzXDOtirJEPK0Mf8eEl63D5Dukqe7d5C8mx8VQAFuRJa_weqQLMFwaY3b4Bt9GymQywV6wbCXu13xP-HuO2dymZ9UlUZ2sWaEyhnSPmzoarbvpTmjMZEUrll4itoUJtpeduQkJwYh-iUSoZGPcQIAq8xkNnI0-GqT6QPbyXgdaM"/>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="font-bold text-sm line-clamp-2">Introduction to Modern Psychology</h4>
+<p class="text-xs text-slate-500 mt-1">850 Downloads</p>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-amber-400 text-[16px] fill-current">star</span>
+<span class="text-xs font-bold italic">4.7/5.0</span>
+</div>
+</div>
+</div>
+<!-- Trending Card 3 -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex gap-4 hover:border-primary/40 transition-all cursor-pointer group">
+<div class="relative w-20 h-24 flex-shrink-0 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" data-alt="Cover of a History textbook" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMEgMXtclIMoRcKZUVSC1qPugGwz0GUtTLRxQtQ5fVvR9_v3bnIgvpGYM40PC5C8OxZ3_LEypG47cdHkmg31TIsYAtGNQ9czh55wIKD-soh2hOxCGIv8zrlpBQ7iCyROvj7dSxBjcrZZ9ca6_clW-Spz552a6rxPevXxT5RRBHTR3GJ64AyYrGj4IYfPetC0X8M02AHszPgWmwZJNHEE9jhT-RSWgddz8x4n1g3_r74ktyHZI4rB7bZin7AL9Mzh16VsYZUR1pqXE"/>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="font-bold text-sm line-clamp-2">A Concise History of the Middle Ages</h4>
+<p class="text-xs text-slate-500 mt-1">620 Downloads</p>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-amber-400 text-[16px] fill-current">star</span>
+<span class="text-xs font-bold italic">4.8/5.0</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Ad/Feature Spot -->
+<div class="mt-8 bg-gradient-to-br from-primary to-blue-700 rounded-2xl p-6 text-white overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="font-bold text-lg mb-2">Join a Study Group</h3>
+<p class="text-white/80 text-sm mb-4">Connect with students in your courses and share notes live.</p>
+<button class="bg-white text-primary px-4 py-2 rounded-lg text-sm font-bold">Find Groups</button>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[120px] text-white/10 rotate-12">groups</span>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer Spacer -->
+<footer class="mt-10 py-6 text-center text-slate-400 text-xs">
+            © 2023 EduResource Academic Hub. All rights reserved.
+        </footer>
+</main>
+</div>
+<script type="module">
+    import { app, analytics, auth, db } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+    import { getDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore.js";
+
+    const welcomeHeader = document.querySelector('section h1');
+    const userNameSpan = document.querySelector('aside .flex-col .font-semibold');
+
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            // User is signed in.
+            const userDocRef = doc(db, "users", user.uid);
+            const userDoc = await getDoc(userDocRef);
+
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                const firstName = userData.fullName.split(' ')[0];
+                
+                // Update welcome message
+                if (welcomeHeader) {
+                    welcomeHeader.textContent = `Welcome back, ${firstName}!`;
+                }
+                
+                // Update sidebar name
+                if (userNameSpan) {
+                    userNameSpan.textContent = userData.fullName;
+                }
+
+            } else {
+                console.log("No such user document!");
+            }
+        } else {
+            // User is signed out, redirect to login page.
+            console.log("User is not signed in. Redirecting to login page.");
+            window.location.href = 'login.html';
+        }
+    });
+
+    const signOutBtn = document.getElementById('sign-out-btn');
+    if (signOutBtn) {
+        signOutBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+                await signOut(auth);
+                // The onAuthStateChanged listener will handle the redirect.
+            } catch (error) {
+                console.error('Sign out error:', error);
+                alert('Failed to sign out.');
+            }
+        });
+    }
+</script>
+</body></html>

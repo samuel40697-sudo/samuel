@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Contribute Resources | StudyShare</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">StudyShare</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="dashboard.html">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">My Library</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">Upload</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="size-10 rounded-full bg-primary/10 border border-primary/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar of a student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsRzmiShffIoLL-8Gw8uSUXso-e0hBWDmAFI9MEQay6rkxYNLcXdcLyZ5pSmdLFhlBAthnSOV4bGNTsCQCm_AR00h1ccx43pzo3PjtikL03Zi-MVsEKZlxJGW-RLwrj-GPiV2yG1WHo59M0HWXEYzBoEUfgFAWarrzVEDJglNSIJU2obHDdANNdwbrkSFJPenZvvxMyIrchmY4EOInI8BFpyiPW85Nlcs2ACnmuehv88x8-RRHVgsKII5M7RaqtdzdXJs05W4sDf8"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex justify-center py-8 px-4 md:px-10">
+<div class="max-w-[1000px] w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Sidebar Navigation -->
+<aside class="hidden lg:flex lg:col-span-3 flex-col gap-2">
+<div class="p-4 mb-4">
+<h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Navigation</h3>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="text-sm font-medium">My Uploads</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-lg" href="#">
+<span class="material-symbols-outlined">cloud_upload</span>
+<span class="text-sm font-bold">Upload Resource</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</aside>
+<!-- Main Content Area -->
+<div class="lg:col-span-9 flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<h1 class="text-slate-900 dark:text-slate-100 text-3xl font-extrabold tracking-tight">Contribute Resources</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base">Share your study materials to help others and earn community points.</p>
+</div>
+<!-- Upload Form Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<form id="upload-form">
+<div class="p-6 md:p-8 space-y-8">
+<!-- Google Drive Link Input -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold" for="drive-link">Google Drive Link</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">link</span>
+<input id="drive-link" class="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-slate-400" placeholder="https://drive.google.com/..." type="url" required=""/>
+</div>
+</div>
+<!-- Metadata Fields -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold" for="course-code">Course Code</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">tag</span>
+<input id="course-code" class="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-slate-400" placeholder="e.g. CS101, BIO202" type="text" required=""/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold" for="resource-type">Resource Type</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">category</span>
+<select id="resource-type" class="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none cursor-pointer" required="">
+<option disabled="" selected="" value="">Select type...</option>
+<option value="notes">Lecture Notes</option>
+<option value="summary">Topic Summary</option>
+<option value="exam">Practice Exam</option>
+<option value="cheatsheet">Cheat Sheet</option>
+<option value="assignment">Assignment Guide</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold" for="resource-title">Resource Title (Optional)</label>
+<input id="resource-title" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-slate-400" placeholder="e.g. Midterm 1 Preparation Notes - Data Structures" type="text"/>
+</div>
+<!-- Verification Checkbox -->
+<div class="p-4 bg-primary/5 dark:bg-primary/10 rounded-lg border border-primary/10">
+<label class="flex items-start gap-3 cursor-pointer group" for="verify-checkbox">
+<div class="relative flex items-center mt-0.5">
+<input id="verify-checkbox" class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 checked:bg-primary checked:border-primary transition-all" type="checkbox" required=""/>
+<span class="material-symbols-outlined absolute left-0 top-0 text-white opacity-0 peer-checked:opacity-100 text-[20px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-tight">I verify this is my own work or a reliable resource</span>
+<span class="text-slate-500 dark:text-slate-400 text-xs mt-1">By checking this, you confirm you have the right to share this material and it doesn't violate academic integrity policies.</span>
+</div>
+</label>
+</div>
+<!-- Submit Action -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-green-500">info</span>
+<p class="text-xs">Your contribution helps 12,000+ students weekly</p>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<button type="button" class="flex-1 md:flex-none px-6 py-3 rounded-lg text-slate-600 dark:text-slate-400 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                                        Cancel
+                                    </button>
+<button type="submit" id="upload-btn" class="flex-1 md:flex-none px-10 py-3 bg-primary text-white font-bold rounded-lg shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all text-sm">
+                                        Upload Resource
+                                    </button>
+</div>
+</div>
+</div>
+</form>
+</div>
+<!-- Helpful Tips Section -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+<div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary">visibility</span>
+<h4 class="font-bold text-sm">Clear Scanning</h4>
+<p class="text-xs text-slate-500">Ensure your handwritten notes are well-lit and legible for other students.</p>
+</div>
+<div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary">sell</span>
+<h4 class="font-bold text-sm">Correct Coding</h4>
+<p class="text-xs text-slate-500">Use official university course codes to help others find your work easily.</p>
+</div>
+<div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary">military_tech</span>
+<h4 class="font-bold text-sm">Earn Rewards</h4>
+<p class="text-xs text-slate-500">High-quality contributions earn you 'Pro' badges and premium access.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto py-8 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+<div class="max-w-[1000px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+<span class="font-bold text-slate-900 dark:text-white">StudyShare</span>
+</div>
+<div class="flex gap-6 text-sm text-slate-500 dark:text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+<p class="text-xs text-slate-400">© 2024 StudyShare. Empowering learners everywhere.</p>
+</div>
+</footer>
+</div>
+<script type="module">
+    import { app, auth, db } from './firebase-config.js';
+    // import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-storage.js"; // Storage not needed for links
+    import { addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+
+    // DOM Elements
+    const uploadForm = document.getElementById('upload-form');
+    const driveLinkInput = document.getElementById('drive-link');
+    const courseCodeInput = document.getElementById('course-code');
+    const resourceTypeInput = document.getElementById('resource-type');
+    const resourceTitleInput = document.getElementById('resource-title');
+    const verifyCheckbox = document.getElementById('verify-checkbox');
+    const uploadBtn = document.getElementById('upload-btn');
+    
+    let currentUser = null;
+
+    // Firebase services
+    // const storage = getStorage(app);
+
+    // Auth state listener to check for logged-in user
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            currentUser = user;
+            uploadForm.style.opacity = '1';
+            uploadBtn.disabled = false;
+        } else {
+            currentUser = null;
+            alert('You must be logged in to upload resources. Redirecting to login page.');
+            window.location.href = 'login.html';
+        }
+    });
+
+    // --- Form Submission Logic ---
+    uploadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!currentUser || !verifyCheckbox.checked) {
+            alert('Please log in and verify your submission.');
+            return;
+        }
+
+        const driveLink = driveLinkInput.value;
+        if (!driveLink) {
+            alert('Please enter a valid Google Drive link.');
+            return;
+        }
+
+        uploadBtn.disabled = true;
+
+        try {
+            uploadBtn.textContent = 'Saving...';
+            await addDoc(collection(db, "resources"), {
+                uploaderId: currentUser.uid, 
+                courseCode: courseCodeInput.value, 
+                resourceType: resourceTypeInput.value, 
+                title: resourceTitleInput.value || "Untitled Resource", 
+                fileName: "Google Drive Resource", 
+                fileSize: 0, 
+                fileType: "drive-link", 
+                downloadURL: driveLink, 
+                storagePath: null, 
+                createdAt: serverTimestamp(),
+            });
+
+            alert('Resource link saved successfully!');
+            uploadForm.reset();
+        } catch (error) {
+            console.error("Error during upload process:", error);
+            alert(`Error saving resource. Error: ${error.message}`);
+        } finally {
+            uploadBtn.disabled = false;
+            uploadBtn.textContent = 'Upload Resource';
+        }
+    });
+</script>
+</body></html>
